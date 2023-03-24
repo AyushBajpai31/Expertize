@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+	<script>
+		window.onload = function() {
+			var d = new Date().getTime();
+			document.getElementById("tid").value = d;
+		}
+	</script>
+    <title>Checkout Page</title>
+  </head>
+  <body>
+    <header>
+      <h1>Expertize</h1>
+      <div class="logo">
+        <img src="logo.png" alt="Logo">
+      </div>
+	  <h1>Checkout Page</h1>
+    </header>
+    <form method="post" name="customerData" action="ccavRequestHandler.php">
+	<main>
+    <form>
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+        <small class="error-message">Please enter a valid email address</small>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Calling Number</label>
+        <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required>
+        <small class="error-message">Please enter a 10-digit phone number</small>
+      </div>
+
+      <div class="form-group">
+        <label for="whatsapp">WhatsApp Number</label>
+        <input type="tel" id="whatsapp" name="whatsapp" pattern="[0-9]{10}" required>
+        <small class="error-message">Please enter a 10-digit phone number</small>
+      </div>
+
+      <div class="form-group">
+        <label for="order_id">Order ID</label>
+        <input type="text" id="order_id" name="order_id" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="product-value">Registration Fees
+        </label>
+        <input type="text" id="product-value" name="product-value" readonly>
+      </div>
+
+      <input type="hidden" id="tid" name="tid" value="">
+      <input type="hidden" id="merchant_id" name="merchant_id" value="2190749">
+      <input type="hidden" id="amount" name="amount" value="1">
+      <input type="hidden" id="currency" name="currency" value="INR">
+      <input type="hidden" id="redirect_url" name="redirect_url" value="http://localhost/PHPKits/NON_SEAMLESS_KIT/ccavResponseHandler.php">
+      <input type="hidden" id="cancel_url" name="cancel_url" value="http://localhost/PHPKits/NON_SEAMLESS_KIT/ccavResponseHandler.php">
+      <input type="hidden" id="language" name="language" value="EN">
+
+      <input type="submit" value="Submit">
+    </form>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
+
+
+<style>
+
+body {
+  background-color: rgba(22,34,57,0.99);
+}
+
+	header {
+  display: flex;
+  justify-content: space-between; 
+  align-items:center ;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.5px;
+  padding: 15px 20px;
+  border: 2px solid rgba(250,250,250,0.1);
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+
+.logo img {
+  max-height: 100px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+  width: 100%;
+  padding: 3px;
+  border: 2px solid #ddd;
+  border-radius: 3px;
+  font-size: 20px;
+}
+
+input[type="submit"] {
+  background-color: #f5a425;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  margin-top: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #d9971f;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+</style>
