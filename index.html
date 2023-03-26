@@ -291,8 +291,8 @@
                   </fieldset>
                 </div>
                 <div class="col-md-12">
-                  <div class="main-button"><a rel="nofollow" href="https://www.expertize.co.in/payment/"
-                    target="_blank">Register Now</a></div>
+                  <div class="main-button" onclick="saveDetail()"><a rel="nofollow" href="https://www.expertize.co.in/payment/"
+                    target="_blank" >Register Now</a></div>
                 </div>
               </div>
             </form>
@@ -398,6 +398,7 @@
 
     firebase.initializeApp(firebaseConfig);
     var db = firebase.database()
+    var dataRef = firebase.database().ref('Collected Data');
     window.onload = function () {
 
       var dataEx = db.ref();
@@ -460,6 +461,21 @@
     $(window).scroll(function () {
       checkSection();
     });
+    // Save details 
+    function saveDetail(){
+      console.log("save")
+      var name=document.getElementById('name').value;
+      var email=document.getElementById('email').value;
+      var phone=document.getElementById('phone-number').value;
+      console.log(name+email+phone)
+      var newRef = dataRef.push();
+      newRef.set({
+                name: name,
+                email: email,
+                phone:phone
+            });
+      console.log("nest")
+    }
   </script>
 </body>
 
