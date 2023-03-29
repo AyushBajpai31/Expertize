@@ -5,7 +5,7 @@ $access_code = 'AVZI33KC25BS17IZSB';
 
 $merchant_json_data =
 array(
-	'order_no' => '',
+	'order_no' => '715128',
 	'reference_no' =>''
 );
 
@@ -20,6 +20,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER,'Content-Type: application/json') ;
 curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 curl_setopt($ch, CURLOPT_POST, 1);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $final_data);
+
 // Get server response ...
 $result = curl_exec($ch);
 curl_close($ch);

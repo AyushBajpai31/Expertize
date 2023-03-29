@@ -2,23 +2,29 @@
 <html>
   <head>
     <meta charset="UTF-8">
+
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.3/firebase-database.js"></script>
+
 	<script>
 		window.onload = function() {
 			var d = new Date().getTime();
 			document.getElementById("tid").value = d;
 		}
 	</script>
+
     <title>Checkout Page</title>
   </head>
   <body>
     <header>
       <h1>Expertize</h1>
       <div class="logo">
-        <img src="logo.png" alt="Logo">
+        <img src="assets/images/logo.png" alt="Logo">
       </div>
 	  <h1>Checkout Page</h1>
     </header>
-    <form method="post" name="customerData" action="ccavRequestHandler.php">
+    
+    <form method="post" name="customerData" action="ccavRequestHandler.php" onsubmit="saveCheckoutData()">
 	<main>
     <form>
       <div class="form-group">
@@ -59,14 +65,56 @@
       <input type="hidden" id="merchant_id" name="merchant_id" value="2190749">
       <input type="hidden" id="amount" name="amount" value="1">
       <input type="hidden" id="currency" name="currency" value="INR">
-      <input type="hidden" id="redirect_url" name="redirect_url" value="http://localhost/PHPKits/NON_SEAMLESS_KIT/ccavResponseHandler.php">
-      <input type="hidden" id="cancel_url" name="cancel_url" value="http://localhost/PHPKits/NON_SEAMLESS_KIT/ccavResponseHandler.php">
+      <input type="hidden" id="redirect_url" name="redirect_url" value="https://www.expertize.co.in/payment/ccavResponseHandler.php">
+      <input type="hidden" id="cancel_url" name="cancel_url" value="https://www.expertize.co.in/payment/ccavResponseHandler.php">
       <input type="hidden" id="language" name="language" value="EN">
 
       <input type="submit" value="Submit">
     </form>
   </main>
   <script src="app.js"></script>
+
+<script>
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyDIgilpd4oTYyJhW69oGXvugZHxRUICFq8",
+    authDomain: "expertize-b24b2.firebaseapp.com",
+    databaseURL: "https://expertize-b24b2-default-rtdb.firebaseio.com",
+    projectId: "expertize-b24b2",
+    storageBucket: "expertize-b24b2.appspot.com",
+    messagingSenderId: "789678873997",
+    appId: "1:789678873997:web:e5142f4533dd165e1d31c4",
+    measurementId: "G-1SDXFLZ5DL"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+var database = firebase.database();
+var checkoutDataRef = database.ref('checkoutData');
+
+function saveCheckoutData() {
+   // Get the form values
+   var name = document.getElementById('name').value;
+   var email = document.getElementById('email').value;
+   var callingNumber = document.getElementById('phone').value;
+   var whatsappNumber = document.getElementById('whatsapp').value;
+   var orderId = document.getElementById('order_id').value;
+   var registrationFees = document.getElementById('product-value').value;
+   console.log()
+
+   // Save the form data to the Firebase Realtime Database
+   checkoutDataRef.push({
+      name: name,
+      email: email,
+      callingNumber: callingNumber,
+      whatsappNumber: whatsappNumber,
+      orderId: orderId,
+      registrationFees: registrationFees
+   });
+}
+</script>
+
 </body>
 </html>
 

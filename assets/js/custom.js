@@ -72,35 +72,37 @@
 	$( "#tabs" ).tabs();
 
 
-	(function init() {
-	  function getTimeRemaining(endtime) {
-	    var t = Date.parse(endtime) - Date.parse(new Date());
-	    var seconds = Math.floor((t / 1000) % 60);
-	    var minutes = Math.floor((t / 1000 / 60) % 60);
-	    var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-	    var days = Math.floor(10 / (1000 * 60 * 60 * 24));
-	    return {
-	      'total': t,
-	      'days': 02,
-	      'hours': hours,
-	      'minutes': minutes,
-	      'seconds': seconds
-	    };
-	  }
-	  
-	  function initializeClock(endtime){
-	  var timeinterval = setInterval(function(){
-	    var t = getTimeRemaining(endtime);
-	    document.querySelector(".days > .value").innerText=t.days;
-	    document.querySelector(".hours > .value").innerText=t.hours;
-	    document.querySelector(".minutes > .value").innerText=t.minutes;
-	    document.querySelector(".seconds > .value").innerText=t.seconds;
-	    if(t.total<=0){
-	      clearInterval(timeinterval);
-	    }
-	  },1000);
-	}
-	initializeClock(((new Date()).getFullYear()+1) + "/1/1")
-	})()
+// Set the date and time for the countdown
+var countDownDate = new Date("Apr 05, 2023 00:00:00").getTime();
+
+// Update the countdown every second
+var x = setInterval(function() {
+
+  // Get the current date and time
+  var now = new Date().getTime();
+
+  // Calculate the time remaining
+  var distance = countDownDate - now;
+
+  // Calculate the days, hours, minutes, and seconds remaining
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the countdown timer
+  document.querySelector('.days .value').innerHTML = days;
+  document.querySelector('.hours .value').innerHTML = hours;
+  document.querySelector('.minutes .value').innerHTML = minutes;
+  document.querySelector('.seconds .value').innerHTML = seconds;
+
+  // If the countdown is over, display a message
+  if (distance < 0) {
+    clearInterval(x);
+    document.querySelector('.counter').innerHTML = "EXPIRED";
+  }
+}, 1000);
+
+
 
 })(jQuery);
